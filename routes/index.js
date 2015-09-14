@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var geocoder = require('geocoder');
 var redis = require("redis"),
-  client = redis.createClient();
+  client = redis.createClient(process.env.REDIS_URL);
 var lineReader = require('line-reader');
 
 /* GET home page. */
