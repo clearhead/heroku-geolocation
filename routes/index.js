@@ -13,6 +13,7 @@ router.get('/', function(req, res, next) {
       error: new Error('?q={city,state}')
     });
   }
+  key = key.replace(/\s+/g, '');
   key = key.toLowerCase();
   client.hgetall(key, function(err, val) {
     if (val) {
@@ -53,6 +54,7 @@ router.get('/seed', function(req, res, next) {
     }));
     if (city && state && lat && lon) {
       var key = city.toLowerCase() + ', ' + state.toLowerCase();
+      key = key.replace(/\s+/g, '');
       client.hmset(key, {
         lat: lat,
         lon: lon
